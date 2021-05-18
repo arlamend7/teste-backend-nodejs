@@ -62,7 +62,7 @@ async function editar(req: Request, res: Response) {
     }
     const { email, nome, senha } = req.body;
     try {
-        const usuario = await UsuarioService.editar(
+        await UsuarioService.editar(
             Number(id),
             email,
             nome,
@@ -72,7 +72,7 @@ async function editar(req: Request, res: Response) {
         );
         return res
             .status(201)
-            .json({ usuario, message: "Usuario atualizado com sucesso" });
+            .json({message: "Usuario atualizado com sucesso" });
     } catch (error) {
         return res.status(400).json({ message: error.message });
     }

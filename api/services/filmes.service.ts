@@ -7,9 +7,9 @@ import pessoasService from "./pessoas.service";
 class FilmeService {
     async listar(
         nomeDiretor: string,
-        nome: string,
+        titulo: string,
         genero: string,
-        autor: string,
+        nomeAutor: string,
         qt: number,
         pg: number
     ): Promise<{ count: number; registros: Filme[] }> {
@@ -17,8 +17,8 @@ class FilmeService {
         qt = qt ?? 10;
 
         let query = knex("filme").select("*");
-        if (nome) {
-            query = query.where("nome", "like", `%${nome}%`);
+        if (titulo) {
+            query = query.where("titulo", "like", `%${titulo}%`);
         }
         if (genero) {
             query = query.whereExists(
@@ -35,18 +35,18 @@ class FilmeService {
                     .where("pessoa.nome", "like", `%${nomeDiretor}%`)
             );
         }
-        if (autor) {
+        if (nomeAutor) {
             query = query.whereExists(
                 knex("filme_ator_pessoa")
                     .join("pessoa", "id", "=", "pessoaId")
                     .whereRaw("filme.id = filme_ator_pessoa.filmeId")
-                    .where("pessoa.nome", "like", `%${autor}%`)
+                    .where("pessoa.nome", "like", `%${nomeAutor}%`)
             );
         }
 
         return {
             count: (await query.clone().count("id").first())["count(`id`)"] as number,
-            registros: (await query.offset(pg * qt).limit(qt)) ?? []
+            registros: (await query.offset((pg - 1) * qt).limit(qt)) ?? []
         };
     }
     async validar(id: number): Promise<Filme> {
@@ -121,6 +121,9 @@ class FilmeService {
         diretores: Pessoa[],
         generos: string[]
     ): Promise<Filme> {
+        autores = autores ?? [];
+        diretores = diretores ?? [];
+        generos = generos ?? [];
         const filme = new Filme({
             titulo,
             videoUrl,
@@ -164,8 +167,8 @@ class FilmeService {
             throw e;
         }
         transaction.commit();
-
-        return filme;
+        
+        return this.recuperarDetalhes(filme);
     }
 }
 export default new FilmeService();

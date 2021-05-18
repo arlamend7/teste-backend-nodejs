@@ -15,13 +15,13 @@ routes
 export default routes;
 
 async function listar(req: Request, res: Response) {
-    const { nomeDiretor, nome, genero, autores, qt, pg }: any = req.query;
+    const { nomeDiretor, titulo, genero, nomeAutor, qt, pg }: any = req.query;
     try {
         const response = await filmesService.listar(
             nomeDiretor,
-            nome,
+            titulo,
             genero,
-            autores,
+            nomeAutor,
             qt,
             pg
         );
