@@ -1,0 +1,42 @@
+{
+    "rulesDirectory": ["./api/", "./tests/"],
+    "extends": [
+        "tslint:recommended",
+        "tslint-config-prettier"
+    ],
+    "defaultSeverity" : "warning",
+    "indent": [
+        true,
+        "space",
+        4
+    ],
+    "rules": {
+        "new-parens": true,
+        "no-arg": true,
+        "no-bitwise": true,
+        "no-conditional-assignment": true,
+        "no-console": {
+            "severity": "warning",
+            "options": ["debug", "info", "time", "timeEnd", "trace"]
+        },
+        "member-ordering": [
+            true,
+            {
+              "order": [
+                "static-field",
+                "instance-field",
+                "static-method",
+                "instance-method"
+              ]
+            }
+          ],
+        "whitespace": [
+            true,
+            "check-branch",
+            "check-decl",
+            "check-operator",
+            "check-separator",
+            "check-type"
+        ]
+    }
+}

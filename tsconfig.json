@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "baseUrl" : "./api",
+    "target": "es2015",
+    "module": "commonjs",
+    "outDir": "./dist",
+    "noImplicitAny": false,
+    "strict": false,
+    "declaration": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "resolveJsonModule": true,
+    "noUnusedLocals": true,                /* Report errors on unused locals. */
+    "noUnusedParameters": true,            /* Report errors on unused parameters. */
+    "noImplicitReturns": true,             /* Report error when not all code paths in function return a value. */
+    "noFallthroughCasesInSwitch": true    /* Report errors for fallthrough cases in switch statement. */
+  },
+  "include": ["./api"],
+  "exclude": ["node_modules", "**/__tests__/*"]
+}
