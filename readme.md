@@ -1,5 +1,12 @@
 # Api em Node.js
 
+
+## **Criar migrates**
+
+> npm i 
+
+> npm run knex:migrate
+
 ## **Execução** 
 adicionar arquivos na raiz do projeto: 
 
@@ -25,7 +32,30 @@ e executar :
 <br>
 
 ## **Rotas, requests e reponses**
+<br>
 
+---
+*Fazer login/ Recuperar token*
+```http
+POST localhost:3000/login
+```
+```json 
+// Request - Body
+{
+	"email":"test@test.com",
+	"senha":"Test@123"
+}
+```
+<br>
+
+*Fazer logout...*
+```http
+PUT localhost:3000/logout
+```
+```json 
+// Request - Body
+{}
+```
 <br>
 
 ### *Usuarios*
@@ -117,11 +147,12 @@ Listar filmes paginada
 GET localhost:3000/filmes
 ```
 ```json 
+// Request - Query
 {
 	"nomeDiretor?":"Nome do diretor pesquisado",
 	"titulo?":"Titulo para pesquisar",
 	"genero?":"Genero para pesquisar",
-	"autor?" : "Nome do autor pesquisada",
+	"nomeAutor?" : "Nome do autor pesquisada",
 	"qt?":"Quantidade de itens por pagina",
 	"pg?":"pagina solicitada"
 }
@@ -142,6 +173,7 @@ Cadastrar um filme
 POST localhost:3000/filmes
 ```
 ```json 
+// Request - Body
 {
 	"titulo":"titulo",
 	"videoUrl":"link do video",
@@ -167,6 +199,7 @@ Votar em um filme
 POST localhost:3000/filmes/{:id}/voto
 ```
 ```json 
+// Request - Body
 {
 	"nota":"0 a 4",
 }
