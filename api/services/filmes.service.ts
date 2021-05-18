@@ -11,9 +11,9 @@ class FilmeService {
         genero: string,
         autor: string,
         qt: number,
-        page: number
+        pg: number
     ): Promise<{ count: number; registros: Filme[] }> {
-        page = page ?? 0;
+        pg = pg ?? 0;
         qt = qt ?? 10;
 
         let query = knex("filme").select("*");
@@ -46,7 +46,7 @@ class FilmeService {
 
         return {
             count: (await query.clone().count("id").first())["count(`id`)"] as number,
-            registros: (await query.offset(page * qt).limit(qt)) ?? []
+            registros: (await query.offset(pg * qt).limit(qt)) ?? []
         };
     }
     async validar(id: number): Promise<Filme> {

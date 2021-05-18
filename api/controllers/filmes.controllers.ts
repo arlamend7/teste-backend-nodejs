@@ -10,7 +10,7 @@ routes
     .get("/filmes", listar)
     .get("/filmes/:id", recuperar)
     .post("/filmes", verifyAdmin, criar)
-    .put("/filmes/:id/voto", votar);
+    .post("/filmes/:id/voto", votar);
 
 export default routes;
 
