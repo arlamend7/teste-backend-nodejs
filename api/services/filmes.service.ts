@@ -13,7 +13,7 @@ class FilmeService {
         qt: number,
         pg: number
     ): Promise<{ count: number; registros: Filme[] }> {
-        pg = pg ?? 0;
+        pg = pg ?? 1;
         qt = qt ?? 10;
 
         let query = knex("filme").select("*");
